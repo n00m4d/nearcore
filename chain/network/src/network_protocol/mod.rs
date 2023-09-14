@@ -2,7 +2,7 @@
 #[path = "borsh.rs"]
 mod borsh_;
 mod borsh_conv;
-mod edge;
+pub mod edge;
 pub mod peer;
 mod proto_conv;
 pub use edge::*;
