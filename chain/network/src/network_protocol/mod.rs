@@ -3,7 +3,7 @@
 mod borsh_;
 mod borsh_conv;
 mod edge;
-mod peer;
+pub mod peer;
 mod proto_conv;
 pub use edge::*;
 pub use peer::*;
