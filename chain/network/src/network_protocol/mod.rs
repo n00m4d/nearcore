@@ -440,7 +440,7 @@ pub enum ParsePeerMessageError {
 impl PeerMessage {
     /// Serializes a message in the given encoding.
     /// If the encoding is `Proto`, then also attaches current Span's context to the message.
-    pub(crate) fn serialize(&self, enc: Encoding) -> Vec<u8> {
+    pub fn serialize(&self, enc: Encoding) -> Vec<u8> {
         match enc {
             Encoding::Borsh => borsh_::PeerMessage::from(self).try_to_vec().unwrap(),
             Encoding::Proto => {
@@ -452,7 +452,7 @@ impl PeerMessage {
         }
     }
 
-    pub(crate) fn deserialize(
+    pub fn deserialize(
         enc: Encoding,
         data: &[u8],
     ) -> Result<PeerMessage, ParsePeerMessageError> {
@@ -473,7 +473,7 @@ impl PeerMessage {
         })
     }
 
-    pub(crate) fn msg_variant(&self) -> &'static str {
+    pub fn msg_variant(&self) -> &'static str {
         match self {
             PeerMessage::Routed(routed_msg) => routed_msg.body_variant(),
             _ => self.into(),
